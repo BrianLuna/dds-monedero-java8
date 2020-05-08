@@ -49,11 +49,10 @@ public class Movimiento {
 
   //Feature envy -> Por qué Movimiento tiene que setearle el saldo a Cuenta y agregarse en Cuenta?
   public void agregateA(Cuenta cuenta) {
-    cuenta.setSaldo(calcularValor(cuenta));
     cuenta.agregarMovimiento(fecha, monto, tipoDeMovimiento);
   }
 
-  //Tipe test -> Está chequeando si el movimiento es o no un depósito para saber qué hacer.
+  //Type test -> Está chequeando si el movimiento es o no un depósito para saber qué hacer.
   //Modifiqué el switch statement por delegación.
   public double calcularValor(Cuenta cuenta) {
     return this.tipoDeMovimiento.calcularValor(cuenta.getSaldo(), this.monto);

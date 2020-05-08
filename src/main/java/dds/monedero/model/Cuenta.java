@@ -11,15 +11,16 @@ import dds.monedero.exceptions.SaldoMenorException;
 
 public class Cuenta {
   //Temporary Field -> El saldo de la cuenta se puede obtener fácilmente accediendo a la lista de movimientos.
-  private double saldo = 0;
+  //Se eliminó el atributo saldo y se modificó el método getSaldo. Se agregó atributo saldo incial.
+  final private double saldoInicial;
   private List<Movimiento> movimientos = new ArrayList<>();
 
-  public Cuenta() {
-    saldo = 0;
+  public Cuenta(double montoInicial) {
+    saldoInicial = montoInicial;
   }
 
-  public Cuenta(double montoInicial) {
-    saldo = montoInicial;
+  public Cuenta() {
+    this.saldoInicial = 0;
   }
 
   public void setMovimientos(List<Movimiento> movimientos) {
@@ -71,11 +72,7 @@ public class Cuenta {
   }
 
   public double getSaldo() {
-    return saldo;
-  }
-
-  public void setSaldo(double saldo) {
-    this.saldo = saldo;
+    return this.saldoInicial + this.movimientos.stream().mapToDouble(Movimiento::getMonto).count();
   }
 
 }
