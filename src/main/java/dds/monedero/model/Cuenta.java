@@ -10,7 +10,7 @@ import dds.monedero.exceptions.MontoNegativoException;
 import dds.monedero.exceptions.SaldoMenorException;
 
 public class Cuenta {
-
+  //Temporary Field -> El saldo de la cuenta se puede obtener fácilmente accediendo a la lista de movimientos.
   private double saldo = 0;
   private List<Movimiento> movimientos = new ArrayList<>();
 

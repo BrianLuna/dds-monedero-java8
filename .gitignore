@@ -1,4 +1,4 @@
-*.class
+g*.class
 .classpath
 .project
 .settings
@@ -22,3 +22,5 @@ pom.xml.next
 release.properties
 
 
+/.idea/
+/dds.monedero.iml
