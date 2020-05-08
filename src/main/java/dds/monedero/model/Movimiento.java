@@ -10,12 +10,13 @@ public class Movimiento {
 
   //Primitive obsession -> Como la operación a realizar al agregar un movimiento a la cuenta varía si es depósito o no,
   //es una opción modelar el tipo de movimiento con otra abstracción.
-  private boolean esDeposito;
+  //Modifiqué el boolean por un enum.
+  private TipoDeMovimiento tipoDeMovimiento;
 
-  public Movimiento(LocalDate fecha, double monto, boolean esDeposito) {
+  public Movimiento(LocalDate fecha, double monto, TipoDeMovimiento tipoDeMovimiento) {
     this.fecha = fecha;
     this.monto = monto;
-    this.esDeposito = esDeposito;
+    this.tipoDeMovimiento = tipoDeMovimiento;
   }
 
   public double getMonto() {
@@ -39,25 +40,22 @@ public class Movimiento {
   }
 
   public boolean isDeposito() {
-    return esDeposito;
+    return this.tipoDeMovimiento == TipoDeMovimiento.DEPOSITO;
   }
 
   public boolean isExtraccion() {
-    return !esDeposito;
+    return this.tipoDeMovimiento == TipoDeMovimiento.EXTRACCION;
   }
 
   //Feature envy -> Por qué Movimiento tiene que setearle el saldo a Cuenta y agregarse en Cuenta?
   public void agregateA(Cuenta cuenta) {
     cuenta.setSaldo(calcularValor(cuenta));
-    cuenta.agregarMovimiento(fecha, monto, esDeposito);
+    cuenta.agregarMovimiento(fecha, monto, tipoDeMovimiento);
   }
 
   //Tipe test -> Está chequeando si el movimiento es o no un depósito para saber qué hacer.
+  //Modifiqué el switch statement por delegación.
   public double calcularValor(Cuenta cuenta) {
-    if (esDeposito) {
-      return cuenta.getSaldo() + getMonto();
-    } else {
-      return cuenta.getSaldo() - getMonto();
-    }
+    return this.tipoDeMovimiento.calcularValor(cuenta.getSaldo(), this.monto);
   }
 }
