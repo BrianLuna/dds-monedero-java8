@@ -48,9 +48,7 @@ public class Movimiento {
   }
 
   //Feature envy -> Por qué Movimiento tiene que setearle el saldo a Cuenta y agregarse en Cuenta?
-  public void agregateA(Cuenta cuenta) {
-    cuenta.agregarMovimiento(fecha, monto, tipoDeMovimiento);
-  }
+  //Se elimina el método y se modifican los métodos sacar y poner.
 
   //Type test -> Está chequeando si el movimiento es o no un depósito para saber qué hacer.
   //Modifiqué el switch statement por delegación.
