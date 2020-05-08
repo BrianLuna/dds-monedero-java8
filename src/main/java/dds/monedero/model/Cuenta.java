@@ -62,6 +62,6 @@ public class Cuenta {
   }
 
   public double getSaldo() {
-    return saldoInicial + getMovimientos().stream().mapToDouble(Movimiento::getMonto).count();
+    return saldoInicial + getMovimientos().stream().mapToDouble(Movimiento::getMonto).sum();
   }
 }

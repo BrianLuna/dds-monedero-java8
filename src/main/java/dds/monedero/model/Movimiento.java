@@ -14,7 +14,7 @@ public class Movimiento {
   }
 
   public double getMonto() {
-    return monto;
+    return tipoDeMovimiento.calcularMonto(monto);
   }
 
   public LocalDate getFecha() {

@@ -4,17 +4,17 @@ public enum TipoDeMovimiento {
 
     DEPOSITO{
         @Override
-        public double calcularValor(double saldoDeCuenta, double montoDelMovimiento) {
-            return saldoDeCuenta + montoDelMovimiento;
+        public double calcularMonto(double montoDelMovimiento) {
+            return montoDelMovimiento;
         }
     },
     EXTRACCION{
         @Override
-        public double calcularValor(double saldoDeCuenta, double montoDelMovimiento) {
-            return saldoDeCuenta - montoDelMovimiento;
+        public double calcularMonto(double montoDelMovimiento) {
+            return -montoDelMovimiento;
         }
     };
 
-    abstract public double calcularValor(double saldoDeCuenta, double montoDelMovimiento);
+    abstract public double calcularMonto(double montoDelMovimiento);
 
 }
